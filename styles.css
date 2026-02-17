@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -14,12 +14,16 @@ body {
     color: white;
 }
 
+/* CARD */
 .card {
     width: 90%;
     max-width: 1100px;
-    border: 3px solid white;
-    border-radius: 40px;
     padding: 40px;
+    border-radius: 40px;
+    border: 3px solid white;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
 }
 
 /* HEADER */
@@ -33,7 +37,7 @@ body {
 /* IZQUIERDA */
 .info-left h1 {
     font-size: 64px;
-    font-weight: bold;
+    letter-spacing: 4px;
 }
 
 .label {
@@ -47,8 +51,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* ICONOS REDES */
-/* Tamaño recomendado: 24x24 */
 .icon {
     width: 24px;
     height: 24px;
@@ -66,7 +68,6 @@ body {
     margin-bottom: 12px;
 }
 
-/* TRIÁNGULO INVERTIDO */
 .genres {
     display: flex;
     flex-direction: column;
@@ -94,12 +95,67 @@ body {
     text-align: center;
 }
 
-.song img {
+/* IMAGEN */
+.song-image {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.song-image img {
     width: 150px;
     height: 150px;
-    border-radius: 25px;
     object-fit: cover;
-    background: white;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* OVERLAY */
+.song-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* BOTONES */
+.btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.spotify {
+    background: #1DB954;
+    border: 1px solid white;
+}
+
+.apple {
+    background: #fa3c55;
+    border: 1px solid white;
+}
+
+/* HOVER */
+.song:hover img {
+    filter: grayscale(100%);
+    transform: scale(1.05);
+}
+
+.song:hover .song-overlay {
+    opacity: 1;
 }
 
 .song-title {
@@ -107,26 +163,13 @@ body {
     font-size: 12px;
 }
 
-/* ========================= */
-/* RESPONSIVE - MÓVIL */
-/* ========================= */
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
 
-    body {
-        padding: 20px;
-    }
-
-    .card {
-        padding: 25px;
-        border-radius: 25px;
-    }
-
-    /* HEADER */
     .header {
         flex-direction: column;
-        text-align: center;
         gap: 30px;
+        text-align: center;
     }
 
     .info-left h1 {
@@ -137,19 +180,31 @@ body {
         justify-content: center;
     }
 
-    /* GÉNEROS */
-    .genres .bottom {
-        gap: 20px;
-    }
-
-    /* CANCIONES */
     .songs {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .song img {
+    .song-image img {
         width: 130px;
         height: 130px;
+        filter: grayscale(100%);
+    }
+
+    .song-overlay {
+        opacity: 1;
+        background: rgba(0,0,0,0.45);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .song-image img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .genre {
+        font-size: 13px;
     }
 }
